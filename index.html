@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Demo</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="description" content="Demo project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css"></style>
+  </head>
+  <body>
+    <div class="orderLine">
+      <div class="orderLine_variants">
+        <div class="orderLine_title">Color</div>
+        <select class="orderLine_color" v-model="id_color">
+          <option value="0">Select Color</option>
+          <option v-for="(color, id_color) in prices" v-bind:value="id_color">
+          {{color.name}}
+          </option>
+        </select>
+      </div>
+
+
+      <div class="orderLine_variants orderLine__variants_sizes" v-if="isColor">
+        <div class="orderLine_title">Size</div>
+          <select class="orderLine_size" v-model="id_size">
+            <option value="0">Select size</option>
+            <option v-for="(size, id_size) in prices[id_color].sizes" v-bind:value="id_size">
+              {{size.name}}
+            </option>
+          </select>
+      </div>
+
+      <div class="orderLine_price" v-if="isSize">{{price}}</div>
+      <div class="orderLine_button" v-if="isSize">Add to basket
+      </div>
+    </div>
+    <script type="text/javascript" src="./js/vue.min.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </body>
+</html>
